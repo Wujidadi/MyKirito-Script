@@ -296,9 +296,13 @@ const myBot = new (function()
             if (this.el.bonus.cdDiv !== null && document.body.contains(this.el.bonus.cdDiv))
             {
                 const matches = this.el.bonus.cdDiv.textContent.match(/冷卻倒數：(\d+)/);
-                if (matches.length > 1)
+                if (matches !== null && matches.length > 1)
                 {
                     this.data.bonus.cdTime = Number(matches[1]);
+                }
+                else
+                {
+                    this.data.bonus.cdTime = 0;
                 }
             }
             else if (this.isAboveLevelOne() && !document.body.contains(this.el.bonus.cdDiv))
