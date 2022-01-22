@@ -89,11 +89,21 @@ const myBot = new (function()
             const me = this;
 
             this.locate();
-            this.act();
+
+            const actionCoolDownTime = this.getActionCoolDownTime();
+            if (actionCoolDownTime <= 0 && this.isActable())
+            {
+                this.act();
+            }
+
             /* 行動與領取樓層獎勵之間保持一定時間間隔 */
             setTimeout(function()
             {
-                me.getLevelBonus();
+                const bonusCoolDownTime = me.getBonusCoolDownTime();
+                if (bonusCoolDownTime !== null && bonusCoolDownTime <= 0 && me.isLevelBonusGettable())
+                {
+                    me.getLevelBonus();
+                }
             }, this.timeBetweenActionAndGettingBonus);
 
             /* 設定下次執行間隔 */
