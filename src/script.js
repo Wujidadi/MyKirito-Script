@@ -71,7 +71,7 @@ const myBot = new (function()
         },
         checkInterval: {
             id: null,
-            min: 67000,
+            min: 69000,
             max: 98999
         },
         timeBetweenActionAndGettingBonus: 1000,
